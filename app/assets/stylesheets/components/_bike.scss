@@ -1,0 +1,33 @@
+.bike-img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.bike-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.bike-delete {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.2rem;
+}
+
+.bike-edit {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.2rem;
+}
+
+.bike-text {
+  color: #2E2412;
+  text-decoration: none;
+}
+
+.card-content {
+  min-height: 150px;
+}

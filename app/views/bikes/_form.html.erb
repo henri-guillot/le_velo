@@ -1,0 +1,32 @@
+<div class="container my-4 mx-auto">
+
+  <div class="row justify-content-center">
+
+    <div class="col-4">
+
+      <%= simple_form_for bike do |f| %>
+        <%= f.input :name,
+                    label: false,
+                    placeholder: "Name" %>
+        <%= f.input :style,
+                    label: false,
+                    placeholder: "Style" %>
+        <%= f.input :short_description,
+                    label: false,
+                    placeholder: "Short description" %>
+        <%= f.input :long_description,
+                    label: false,
+                    placeholder: "Long description" %>
+        <%= f.input :price_per_day,
+                    label: false,
+                    placeholder: "Price"
+        %>
+        <%= f.input :photo, as: :file, input_html: { multiple: true } %>
+        <%= f.submit class:"btn btn-primary" %>
+      <% end %>
+
+      <%= link_to 'Back', bikes_path, class:"btn btn-secondary my-4" %>
+
+    </div>
+  </div>
+</div>
