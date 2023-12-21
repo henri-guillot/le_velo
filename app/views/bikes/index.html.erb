@@ -4,7 +4,7 @@
     <div class="d-flex flex-column align-items-center">
       <h2 class="mb-4">My bikes</h2>
 
-      <%= link_to 'Add a bike', new_bike_path, class:"btn btn-primary mb-4" %>
+      <%= link_to 'Add a bike', new_bike_path, class:"btn btn-flat mb-4" %>
     </div>
 
       <div class="row justify-content-center">
@@ -62,7 +62,7 @@
               class: "form-control",
               placeholder: "Find your next marvelous bike"
           %>
-        <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+        <%= submit_tag "Search", name: "", class: "btn btn-flat" %>
       <% end %>
     </div>
   </div>
@@ -117,41 +117,4 @@
         <% end %>
       </div>
 
-</div>
-
-<div class="container mt-3">
-  <div class="row">
-    <div class="col-12">
-      <h1>Vélos à louer</h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-        <p> <%= Bike.count %> vélos à proximité</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <% @bikes.each do |bike| %>
-      <div class="col-6 py-3">
-        <div class="card-bike">
-          <%= cl_image_tag bike.photo.key %>
-          <div class="card-bike-infos d-flex align-items-center justify-content-between">
-              <div>
-                <h2 class="mr-3"><%= bike.name %></h2>
-                <p><%= link_to "Je réserve", bike_path(bike), class: "btn btn-ghost" %></p>
-              </div>
-              <div>
-                <p><div class="flex align-items-center">
-                  <i class="fas fa-location"></i>
-                  <span><%= bike.style %></span>
-                </div></p>
-                <h3 class="card-bike-pricing"><%= bike.price_per_day.to_i %> €</h3>
-              </div>
-          </div>
-        </div>
-        </div>
-      <% end %>
-    </div>
 </div>

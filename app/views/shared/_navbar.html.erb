@@ -16,8 +16,7 @@
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Home", root_path, class: "nav_link dropdown-item" %>
-              <%= link_to "Index", bikes_path, class: "nav_link dropdown-item" %>
-              <%= link_to "Dashboard", class: "dropdown-item" %>
+              <%= link_to "Dashboard", bookings_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>

@@ -1,0 +1,56 @@
+<div class="container my-5 mx-auto">
+
+<div class="accordion" id="dashboardAccordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        My bookings
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#dashboardAccordion">
+      <% @bookings.each do |booking| %>
+        <%= link_to booking_path(booking), class:"text-decoration-none standard-title" do %>
+          <div class="accordion-body d-flex justify-content-between align-items-center booking-card">
+            <p class="m-0 flex-shrink-0" style="width: 300px;"><i class="fa-solid fa-mug-hot "></i> <%= booking.bike.style %></p>
+            <p class="m-0 flex-shrink-0"><i class="fa-solid fa-calendar-days"></i> <%= booking.start_date.strftime("%d %b %Y") %> / <%= booking.end_date.strftime("%d %b %Y") %></p>
+            <p class="m-0 flex-shrink-0"><i class="fa-solid fa-euro-sign"></i> <%= booking.total_price.round %></p>
+            <% if booking.status == "Pending" %>
+              <p class="m-0 bg-warning p-2 text-white rounded flex-shrink-0 text-center" style="width: 95px;"><%= booking.status %></p>
+            <% elsif booking.status == "Accepted" %>
+              <p class="m-0 bg-success p-2 text-white rounded flex-shrink-0 text-center" style="width: 95px;"><%= booking.status %></p>
+            <% elsif booking.status == "Rejected" %>
+              <p class="m-0 bg-danger p-2 text-white rounded flex-shrink-0 text-center" style="width: 95px;"><%= booking.status %></p>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        My booked bikes
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#dashboardAccordion">
+     <% @my_booked_bikes.each do |booked_bike| %>
+        <%= link_to booking_path(booked_bike), class:"text-decoration-none standard-title" do %>
+          <div class="accordion-body d-flex justify-content-between align-items-center booking-card">
+            <p class="m-0 flex-shrink-0" style="width: 300px;"><i class="fa-solid fa-mug-hot "></i> <%= booked_bike.bike.style %></p>
+            <p class="m-0"><i class="fa-solid fa-calendar-days"></i> <%= booked_bike.start_date.strftime("%d %b %Y") %> / <%= booked_bike.end_date.strftime("%d %b %Y") %></p>
+            <p class="m-0"><i class="fa-solid fa-euro-sign"></i> <%= booked_bike.total_price.round %></p>
+            <% if booked_bike.status == "Pending" %>
+              <p class="m-0 bg-warning p-2 text-white rounded flex-shrink-0 text-center" style="width: 95px;"><%= booked_bike.status %></p>
+            <% elsif booked_bike.status == "Accepted" %>
+              <p class="m-0 bg-success p-2 text-white rounded flex-shrink-0 text-center" style="width: 95px;"><%= booked_bike.status %></p>
+            <% elsif booked_bike.status == "Rejected" %>
+              <p class="m-0 bg-danger p-2 text-white rounded flex-shrink-0 text-center" style="width: 95px;"><%= booked_bike.status %></p>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+</div>

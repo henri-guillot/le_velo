@@ -1,4 +1,4 @@
-.bike-img {
+.card-img-top {
   height: 250px;
   width: 100%;
   object-fit: cover;
@@ -7,6 +7,9 @@
 .bike-container {
   position: relative;
   margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
 }
 
 .bike-delete {
@@ -30,4 +33,5 @@
 
 .card-content {
   min-height: 150px;
+
 }

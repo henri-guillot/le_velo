@@ -1,0 +1,79 @@
+<div class="container my-4 mx-auto">
+
+  <div class="d-flex flex-column align-items-center">
+    <h2 class="mb-4 text-center">Booking details</h2>
+    <%= link_to 'Back', :back, class:"btn btn-secondary mb-4" %>
+  </div>
+
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-4 col-md-6">
+
+        <div class="card bike-container">
+            <%= cl_image_tag @booking.bike.photo.key, crop: :fill, class:"card-img-top border-bottom" %>
+          <div class="card-body p-0 d-flex flex-column justify-content-between card-content">
+            <div class="card-header border standard-title">
+              <strong>bike details</strong>
+            </div>
+            <div class="p-3">
+              <div class="d-flex align-items-center mb-2">
+                <i class="fa-solid fa-mug-hot" style="width: 40px;"></i>
+                <h5 class="card-title m-0"><strong><%= @booking.bike.style %></strong></h5>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="fa-solid fa-comment flex-shrink-0" style="width: 40px;"></i>
+                <p class="card-text"><%= @booking.bike.long_description %></p>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="fa-solid fa-user" style="width: 40px;"></i>
+                <p class="card-text"><%= @booking.bike.user.username %></p>
+              </div>
+            </div>
+            <div class="card-header border standard-title">
+            <strong>Booking details</strong>
+           </div>
+           <div class="p-3">
+              <div class="d-flex align-items-center mb-2">
+                <i class="fa-solid fa-user" style="width: 40px;"></i>
+                <p class="card-text"><%= @booking.user.username %></p>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="fa-solid fa-calendar-days" style="width: 40px;"></i>
+                <p class="card-text"><%= @booking.start_date.strftime("%d %b %Y") %> / <%= @booking.end_date.strftime("%d %b %Y") %></p>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="fa-solid fa-euro-sign" style="width: 40px;"></i>
+                <p class="card-text"><%= @booking.total_price.round %></p>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="fa-solid fa-spinner" style="width: 40px;"></i>
+                <% if @booking.status == "Pending" %>
+                  <p class="card-text m-0 me-5 text-warning"><strong><%= @booking.status %></strong></p>
+                <% elsif @booking.status == "Accepted" %>
+                  <p class="card-text m-0 me-5 text-success"><strong><%= @booking.status %></strong></p>
+                <% elsif @booking.status == "Rejected" %>
+                 <p class="card-text m-0 me-5 text-danger"><strong><%= @booking.status %></strong></p>
+                <% end %>
+                <% if @booking.bike.user == current_user && @booking.status == "Pending" %>
+                  <div class="d-flex flex-grow-1 justify-content-end">
+                    <%= link_to accept_booking_path(@booking), data: {turbo_method: :patch}, class:"text-decoration-none me-3" do %>
+                      <button class="bg-success text-white">Accept</button>
+                    <% end %>
+                    <%= link_to reject_booking_path(@booking), data: {turbo_method: :patch}, class:"text-decoration-none" do %>
+                      <button class="bg-danger text-white">Reject</button>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+           </div>
+          </div>
+          <% if @booking.user == current_user %>
+            <%= link_to booking_path(@booking), class: "text-decoration-none text-black bike-delete", data: {turbo_method: :delete, turbo_confirm: "Do you want to delete this booking?"} do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          <% end %>
+        </div>
+
+    </div>
+  </div>
+
+</div>
